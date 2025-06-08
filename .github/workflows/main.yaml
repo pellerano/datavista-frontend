@@ -10,7 +10,34 @@ on:
       - main
 
 jobs:
-  build_and_deploy_job:
+  build:
+    name: Build and Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Instalar dependencias
+        run: |
+          npm install -g @angular/cli@19.0.0
+          npm ci
+
+      - name: Compilar Ionic App (Production)
+        run: npm run build -- --configuration=production
+
+      - name: Guardar paquete generado para el trabajo de despliegue
+        uses: actions/upload-artifact@v4
+        with:
+          name: datavista-frontend-build
+          path: www/
+
+  deploy:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
