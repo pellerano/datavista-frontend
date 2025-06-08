@@ -1,0 +1,40 @@
+:host {
+    ion-item {
+        --background: var(--bg-main);
+        --background-hover: transparent;
+        --color: var(--color-black);
+        --border-color: transparent;
+        --padding-start: 0;
+        --inner-padding-end: 0;
+    }
+    
+    .modal-title {
+        color: var(--color-primary);
+        font-size: 1.25rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-top: 0;
+    }
+
+    .file-upload {
+        margin: 1rem 0;
+        text-align: center;
+
+        .upload-box {
+            border: 2px dashed var(--color-primary);
+            padding: 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--color-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .btns {
+        display: flex;
+        justify-content: end;
+        gap: 0.5rem;
+    }
+}

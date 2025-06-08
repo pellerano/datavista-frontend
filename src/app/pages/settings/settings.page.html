@@ -1,0 +1,246 @@
+<app-header [title]="translate('TITLE')" />
+
+<ion-content [fullscreen]="true" class="ion-padding setting-content">
+  <h1 class="page-title">{{ translate('TITLE') }}</h1>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" sizeMd="7">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              <div class="setting-header">
+                <h2 class="section-title">
+                  <ion-icon name="person-circle-outline"></ion-icon>
+                  {{ translate('PROFILE') }}
+                </h2>
+                <div class="button-group">
+                  <ion-button class="btn-filled" (click)="openEditProfileModal(true)">
+                    {{ translate('EDIT_PROFILE') }}
+                  </ion-button>
+                </div>
+              </div>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="user-data">
+              <ion-list>
+                <ion-item>
+                  <ion-input
+                    label="{{ translate('NAME') }}"
+                    labelPlacement="stacked"
+                    [value]="user.name"
+                    [readonly]="true"
+                    placeholder="{{ translate('NAME') }}"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input
+                    label="{{ translate('LASTNAME') }}"
+                    labelPlacement="stacked"
+                    [value]="user.lastname"
+                    [readonly]="true"
+                    placeholder="{{ translate('LASTNAME') }}"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input
+                    label="{{ translate('EMAIL') }}"
+                    labelPlacement="stacked"
+                    [value]="user.email"
+                    [readonly]="true"
+                    placeholder="{{ translate('EMAIL') }}"></ion-input>
+                </ion-item>
+              </ion-list>
+              <div class="btn-delete">
+                <ion-button class="btn-danger" fill="clear" size="small" (click)="onDeleteConfirm()">
+                  {{ translate('DELETE_BTN') }}
+                  <ion-icon slot="end" name="trash-outline"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" sizeMd="5">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              <div class="setting-header">
+                <h2 class="section-title">
+                  <ion-icon name="language-outline"></ion-icon>
+                  {{ translate('APP_LANGUAGE') }}
+                </h2>
+              </div>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p class="language">
+              {{translate('LANGUAGE')}}:
+              <span class="lang">
+                {{ translate(language) }}
+              </span>
+            </p>
+            <ion-button class="btn-outline" size="small" style="margin-top: 1rem;" (click)="openModal(true)">
+              {{ translate('CHANGE_BTN') }}
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-modal
+    [isOpen]="openChangeLanguageModal"
+    (didDismiss)="openChangeLanguageModal = false"
+    id="change-lng-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{ translate('CHANGE_LANGUAGUE') }}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-list>
+          <ion-item>
+            <ion-select
+              interface="popover"
+              [label]="translate('LANGUAGE')"
+              label-placement="fixed"
+              [value]="language"
+              placeholder="Selecciona"
+              (ionChange)="changeLanguage($event)">
+              @for (lang of languages; track $index) {
+                <ion-select-option [value]="lang">{{ translate(lang) }}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal
+    [isOpen]="isOpenEditProfileModal"
+    (didDismiss)="isOpenEditProfileModal = false"
+    id="edit-profile-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{ translate('EDIT_PROFILE') }}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="user-form">
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <ion-list>
+          <!-- Name -->
+          <ion-item>
+            <ion-input
+              type="text"
+              labelPlacement="floating"
+              [label]="translate('NAME')"
+              [placeholder]="translate('NAME')"
+              formControlName="name">
+            </ion-input>
+          </ion-item>
+          @if (formControls['name'].invalid && (formControls['name'].touched || formControls['name'].dirty )) {
+            <ion-text color="danger">
+              @if (formControls['name'].errors?.['required']) {
+                <span>{{ translate('REQUIRED_ERROR') }}</span>
+              }
+            </ion-text>
+          }
+          <!-- Lastname -->
+          <ion-item>
+            <ion-input
+              type="text"
+              labelPlacement="floating"
+              [label]="translate('LASTNAME')"
+              [placeholder]="translate('LASTNAME')"
+              formControlName="lastname">
+            </ion-input>
+          </ion-item>
+          @if (formControls['lastname'].invalid && (formControls['lastname'].touched || formControls['lastname'].dirty )) {
+            <ion-text color="danger">
+              @if (formControls['lastname'].errors?.['required']) {
+                <span>{{ translate('REQUIRED_ERROR') }}</span>
+              }
+            </ion-text>
+          }
+          <!-- Email -->
+          <ion-item>
+            <ion-input
+              type="email"
+              labelPlacement="floating"
+              [label]="translate('EMAIL')"
+              [placeholder]="translate('EMAIL')"
+              formControlName="email">
+            </ion-input>
+          </ion-item>
+          @if (formControls['email'].invalid && (formControls['email'].touched || formControls['email'].dirty )) {
+            <ion-text color="danger">
+              @if (formControls['email'].errors?.['required']) {
+                <span>{{ translate('REQUIRED_ERROR') }}</span>
+              }
+              @if (formControls['email'].errors?.['email']) {
+                <span>{{ translate('EMAIL_ERROR') }}</span>
+              }
+            </ion-text>
+          }
+          <!-- Password -->
+          <ion-item>
+            <ion-input
+              type="password"
+              labelPlacement="floating"
+              [label]="translate('PASSWORD')"
+              [placeholder]="translate('PASSWORD')"
+              formControlName="password">
+            </ion-input>
+          </ion-item>
+          @if (formControls['password'].invalid && (formControls['password'].touched || formControls['password'].dirty )) {
+            <ion-text color="danger">
+              @if (formControls['password'].errors?.['required']) {
+                <span>{{ translate('REQUIRED_ERROR') }}</span>
+              }
+            </ion-text>
+          }
+          <!-- Confirm Password -->
+          <ion-item>
+            <ion-input
+              type="password"
+              labelPlacement="floating"
+              [label]="translate('CONFIRM_PASSWORD')"
+              [placeholder]="translate('CONFIRM_PASSWORD')"
+              formControlName="confirmPassword">
+            </ion-input>
+          </ion-item>
+          @if (formControls['confirmPassword'].invalid && (formControls['confirmPassword'].touched || formControls['confirmPassword'].dirty )) {
+            <ion-text color="danger">
+              @if (formControls['confirmPassword'].errors?.['required']) {
+                <span>{{ translate('REQUIRED_ERROR') }}</span>
+              }
+            </ion-text>
+          }
+          @if (userForm.hasError('passwordMismatch') && (userForm.touched || userForm.dirty) ) {
+            <ion-text color="danger">
+              <span>{{ translate('PASSWORD_MATCH') }}</span>
+            </ion-text>
+          }
+        </ion-list>
+
+        <div class="btn-groups">
+          <ion-button type="button" class="btn-outline" size="small" (click)="onCancelEdit()">
+            {{ translate('CANCEL_EDIT_PROFILE_BTN') }}
+          </ion-button>
+
+          <ion-button type="submit" class="btn-filled" size="small" [disabled]="userForm.invalid">
+            {{ translate('SUBMIT_EDIT_PROFILE_BTN') }}
+          </ion-button>
+        </div>
+        </form>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

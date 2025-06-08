@@ -1,0 +1,37 @@
+<ion-menu side="start" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ translate('MENU') }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/home" routerDirection="root">
+            <ion-icon slot="start" name="home-outline"></ion-icon>
+            <ion-label>{{ translate('HOME') }}</ion-label>
+          </ion-item>
+          <ion-item routerLink="/history" routerDirection="root">
+            <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+            <ion-label>{{ translate('HISTORICAL') }}</ion-label>
+          </ion-item>
+          <ion-item routerLink="/settings" routerDirection="root">
+            <ion-icon slot="start" name="settings-outline"></ion-icon>
+            <ion-label>{{ translate('SETTINGS') }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+
+    <ion-footer>
+      <ion-toolbar>
+        <div class="logout-wrapper">
+          <ion-button (click)="logout()">
+            <ion-icon slot="start" name="log-out-outline"></ion-icon>
+            {{ translate('LOGOUT') }}
+          </ion-button>
+        </div>
+      </ion-toolbar>
+    </ion-footer>
+</ion-menu>

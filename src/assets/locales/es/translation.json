@@ -1,0 +1,99 @@
+{
+  "APPNAME": "DataVista",
+  "LOGIN": {
+    "TITLE": "DataVista",
+    "EMAIL": "Correo",
+    "PASSWORD": "Contraseña",
+    "BUTTON": "Iniciar Sesión",
+    "EMAIL_ERROR": "El correo debe ser válido.",
+    "REQUIRED_ERROR": "Requerido.",
+    "OR": "O",
+    "SIGNUP": "¡Regístrate!"
+  },
+  "SIGNUP": {
+    "TITLE": "DataVista",
+    "NAME": "Nombre",
+    "LASTNAME": "Apellido",
+    "EMAIL": "Correo",
+    "PASSWORD": "Contraseña",
+    "CONFIRM_PASSWORD": "Confirmar Contraseña",
+    "BUTTON": "Registrar",
+    "EMAIL_ERROR": "El correo debe ser válido.",
+    "PASSWORD_MATCH": "Las contraseñas deben coincidir.",
+    "REQUIRED_ERROR": "Requerido.",
+    "OR": "O",
+    "LOGIN": "Iniciar Sesión!"
+  },
+  "SIDEMENU": {
+    "MENU": "Menú",
+    "HOME": "Inicio",
+    "HISTORICAL": "Histórico",
+    "SETTINGS": "Ajustes",
+    "LOGOUT": "Cerrar Sesión"
+  },
+  "HOME": {
+    "TITLE": "Inicio",
+    "YOUR_RECENT_RESULTS": "Tus resultados más recientes",
+    "SEE_MORE": "Ver más",
+    "CREATE": "Crear",
+    "NAME": "Nombre",
+    "DATE_PERFOMED": "Fecha de realización",
+    "OPERATION_PERFOMED": "Operación realizada",
+    "MODAL_CREATE": {
+      "CREATE": "Crear",
+      "NAME": "Nombre",
+      "NAME_PLACEHOLDER": "Introduce un nombre",
+      "ACTION": "Acción a realizar",
+      "ACTION_PLACEHOLDER": "Selecciona la acción deseada",
+      "FILE_UPLOAD": "Sube tu archivo para analizar",
+      "CANCEL": "Cancelar",
+      "CONTINUE": "Continuar",
+      "GENERATING_RESULTS": "Generando tus resultados"
+    }
+  },
+  "HISTORICAL": {
+    "TITLE": "Histórico",
+    "ALL_YOUR_RESULTS": "Todos tus resultados",
+    "NAME": "Nombre",
+    "DATE_PERFOMED": "Fecha de realización",
+    "OPERATION_PERFOMED": "Operación realizada",
+    "VIEW": "Ver",
+    "DELETE": "Eliminar",
+    "ARE_YOU_SURE_TO_DELETE": "¿Estás seguro de eliminar este resultado?",
+    "NO": "No",
+    "YES": "Sí",
+    "DELETED_SUCCESS": "Resultado eliminado exitosamente",
+    "DELETED_ERROR": "Error al eliminar el resultado"
+  },
+  "RESULTS": {
+    "TITLE":"Resultados"
+  },
+  "SETTINGS": {
+    "TITLE":"Ajustes",
+    "PROFILE": "Tu perfil",
+    "EDIT_PROFILE": "Editar perfil",
+    "NAME": "Nombre",
+    "LASTNAME": "Apellido",
+    "EMAIL": "Correo",
+    "PASSWORD": "Contraseña",
+    "CONFIRM_PASSWORD": "Confirmar Contraseña",
+    "EMAIL_ERROR": "El correo debe ser válido.",
+    "PASSWORD_MATCH": "Las contraseñas deben coincidir.",
+    "REQUIRED_ERROR": "Requerido.",
+    "CANCEL_EDIT_PROFILE_BTN": "Cancelar",
+    "SUBMIT_EDIT_PROFILE_BTN": "Guardar cambios",
+    "DELETE_BTN": "Eliminar cuenta",
+    "APP_LANGUAGE": "Idioma de la Aplicación",
+    "CHANGE_BTN": "Cambiar",
+    "CHANGE_LANGUAGUE":"Cambiar idioma de la Aplicación",
+    "LANGUAGE":"Idioma",
+    "ARE_YOU_SURE_TO_DELETE": "¿Seguro que deseas eliminar tu cuenta?",
+    "DELETE_ADVICE": "Esta acción es irreversible y todos tus datos serán eliminados permanentemente.",
+    "NO": "No",
+    "YES": "Sí",
+    "DELETED_SUCCESS": "Cuenta eliminada exitosamente",
+    "DELETED_ERROR": "Error al eliminar su cuenta",
+    "es": "Español",
+    "en": "Ingles"
+  }
+}

@@ -1,0 +1,45 @@
+ion-modal {
+  --height: 400px;
+  --min-height: 250px;
+  --max-height: 410px;
+  --max-width: 500px;
+  --border-radius: 0.5rem;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  @media (max-width: 576px) {
+    --max-width: 350px;
+    --max-height: 600px;
+  }
+
+  &::part(backdrop) {
+    background: var(--color-black);
+    opacity: 1;
+  }
+
+  ion-toolbar {
+    --background: var(--color-primary);
+    --color: var(--color-white);
+
+    ion-title {
+      font-size: 1rem;
+      padding: 0 1.2rem;
+    }
+  }
+
+  ion-list.list-md,
+  ion-list.list-ios {
+    background: var(--bg-main);
+
+    ion-item {
+      --background: var(--bg-main);
+      --border-color: var(--color-gray2);
+    }
+  }
+
+  &#change-lng-modal {
+    --width: fit-content;
+    --min-width: 250px;
+    --min-height: 100px;
+    --max-height: 160px;
+  }
+}

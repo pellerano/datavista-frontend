@@ -1,0 +1,60 @@
+<ion-content class="ion-padding">
+  <h2 class="modal-title">{{ translate('CREATE') }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-input
+        label="{{ translate('NAME') }}"
+        placeholder="{{ translate('NAME_PLACEHOLDER') }}"
+        formControlName="name"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-select
+        interface="popover"
+        label="{{ translate('ACTION') }}"
+        placeholder="{{ translate('ACTION_PLACEHOLDER') }}"
+        formControlName="action">
+        @for (act of actions; track $index) {
+          <ion-select-option [value]="act">{{ act }}</ion-select-option>
+        }
+      </ion-select>
+    </ion-item>
+
+    <div class="file-upload">
+      <input
+        type="file"
+        (change)="onFileChange($event)"
+        accept=".csv, .xls, .xlsx, .txt"
+        hidden #fileInput />
+      <div class="upload-box" (click)="fileInput.click()">
+        @if (form.value.file) {
+          <ion-icon name="cloud-done-outline" size="large"></ion-icon>
+          <p>{{filename}}</p>
+        } @else {
+          <ion-icon name="cloud-upload-outline" size="large"></ion-icon>
+          <p>{{ translate('FILE_UPLOAD') }}</p>
+        }
+      </div>
+    </div>
+
+    <div class="btns">
+      <ion-button
+        class="btn-outline"
+        type="button"
+        fill="clear"
+        (click)="dismiss()"
+      >
+        {{ translate('CANCEL') }}
+      </ion-button>
+      <ion-button 
+        class="btn-filled" 
+        type="submit" 
+        [disabled]="form.invalid"
+      >
+        {{ translate('CONTINUE') }}
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

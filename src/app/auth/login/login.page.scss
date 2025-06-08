@@ -1,0 +1,92 @@
+
+:host {
+  ion-content {
+    --background: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .data-vista-login-card {
+    width: 100%;
+    margin: auto;
+    margin-top: 5rem;
+    max-width: 25rem;
+    padding: 2rem;
+    border-radius: 8px;
+    background: var(--color-white);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    ion-img {
+      width: 80px;
+      height: 55px;
+      justify-self: center;
+    }
+
+    h1 {
+      margin: 0.25rem 0;
+      font-size: 1.5rem;
+      font-weight: bolder;
+      color: var(--color-primary);
+      text-transform: uppercase;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      ion-item {
+        --background: transparent;
+        --border-color: var(--color-gray);
+        border-bottom: 1px solid var(--color-gray);
+      }
+
+      ion-input {
+        --color: var(--color-black);
+        --placeholder-color: var(--color-gray);
+        --highlight-color-focused: var(--color-black);
+        --highlight-color-invalid: var(--color-red);
+        --highlight-color-valid: var(--color-primary);
+      }
+
+      ion-text {
+        text-align: start;
+        font-size: smaller;
+      }
+
+      ion-button {
+        --background: var(--color-primary);
+        --color: var(--color-white);
+        --border-radius: 6px;
+        margin-top: 1rem;
+        font-weight: 700;
+      }
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--color-gray);
+      margin: 1rem 0;
+
+      &::before,
+      &::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--color-gray);
+      }
+    }
+
+    .register-link {
+      color: var(--color-primary);
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+ion-select {
+    --background: var(--bg-main);
+    color: var(--color-black);
+    --placeholder-color: var(--color-gray2);
+    --border-radius: 0;
+    --highlight-color-focused: var(--color-primary);
+}
+
+ion-select::part(icon) {
+    color: var(--color-black);
+}
+
+ion-popover.select-popover ion-select-popover {
+  
+  ion-list {
+    background: var(--bg-main);
+
+    ion-item {
+      --background: var(--bg-main);
+      --color: var(--color-black);
+      --background-hover: var(--color-primary-hover);
+      --background-hover-opacity: .4;
+      &.item-radio-checked {
+        --background: #9ce0becc;
+        --background-hover: var(--color-primary-hover);
+        --background-hover-opacity: .4;
+        --background-focused: var(--color-primary-hover);
+        --background-focused-opacity: .4;
+      }
+    }
+  }
+}

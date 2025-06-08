@@ -1,0 +1,40 @@
+<app-header [title]="translate('TITLE')" />
+
+<ion-content [fullscreen]="true" class="ion-padding dashboard-content">
+  <h1 class="page-title">{{ translate('TITLE') }}</h1>
+
+  <div class="dashboard-header">
+    <h2 class="section-title">{{ translate('YOUR_RECENT_RESULTS') }}</h2>
+    <div class="button-group">
+      <ion-button class="btn-outline" (click)="seeMore()">
+        {{ translate('SEE_MORE') }}
+      </ion-button>
+      <ion-button class="btn-filled" (click)="openUploadModal()">
+        {{ translate('CREATE') }}
+      </ion-button>
+    </div>
+  </div>
+
+  <ion-grid class="results-table">
+    <ion-row class="header">
+      <ion-col>{{ translate('NAME') }}</ion-col>
+      <ion-col>{{ translate('DATE_PERFOMED') }}</ion-col>
+      <ion-col>{{ translate('OPERATION_PERFOMED') }}</ion-col>
+      <ion-col class="actions"></ion-col>
+    </ion-row>
+
+    @for (result of resultados; track $index) {
+      <ion-row class="results" >
+        <ion-col>{{ result.nombre }}</ion-col>
+        <ion-col>{{ result.fecha }}</ion-col>
+        <ion-col>{{ result.operacion }}</ion-col>
+        <ion-col class="arrow actions">
+          <ion-button fill="clear" (click)="seeResults(result.id)">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    }
+  </ion-grid>
+
+</ion-content>

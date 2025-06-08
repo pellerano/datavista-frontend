@@ -1,0 +1,31 @@
+ion-loading.custom-loading {
+  --background: var(--bg-main);
+  --spinner-color: var(--color-primary);
+
+  color: var(--color-primary);
+
+  .loading-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    padding-inline-start: 3rem;
+    padding-inline-end: 3rem;
+    max-width: 330px;
+
+    .loading-spinner {
+      ion-spinner {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    .loading-content {
+      text-transform: uppercase;
+      text-align: center;
+      white-space: nowrap;
+      margin-top: 0.5rem;
+    }
+  }
+}

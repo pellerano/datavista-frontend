@@ -1,0 +1,49 @@
+ion-alert {
+  ion-backdrop {
+    background-color: var(--color-black);
+    --backdrop-opacity: 0.3;
+  }
+  .alert-wrapper.ion-overlay-wrapper {
+    background: var(--bg-main);
+
+    .alert-head .alert-title {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+    .alert-message{
+      color: var(--color-black);
+    }
+    .alert-button-group {
+      .alert-button.ion-focusable {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        border: 1px solid var(--color-primary);
+        font-weight: 500;
+        text-align: end;
+        text-transform: none;
+        border-radius: 4px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-inline-start: 1.1em;
+        padding-inline-end: 1.1em;
+
+
+        &:hover {
+          background-color: var(--color-primary-hover);
+          border-color: var(--color-primary-hover);
+        }
+
+        &.alert-button-role-cancel {
+          background-color: transparent;
+          color: var(--color-primary);
+
+          &:hover {
+            background-color: var(--color-primary-hover);
+            border-color: var(--color-primary-hover);
+            color: var(--color-white);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+ion-header,
+ion-toolbar {
+  --background: var(--color-primary);
+  --color: var(--color-white);
+  color: var(--color-white);
+}
+
+ion-title {
+  color: var(--color-white);
+}
+.title {
+  padding-left: 0.3rem;
+}
+.logo {
+  width: 3rem;
+}
+
+ion-menu-button {
+  color: var(--color-white);
+}
