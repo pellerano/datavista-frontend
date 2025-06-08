@@ -1,67 +1,51 @@
-name: Desplegar FrontEnd DataVista
+name: Deploy Ionic Angular to Azure Static Web Apps
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: "datavista-frontend" # Nombre del App Service en Azure
-  NODE_VERSION: "20.19.x" #Version de Node
+  NODE_VERSION: "20.19.x"
 
 jobs:
-  build:
-    name: Build and Package
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed') || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    steps:
-      - name: Descargar repositorio
-        uses: actions/checkout@v4
+    name: Build and Deploy Job
 
-      - name: Instalar NodeJS
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
+
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
 
-      - name: Instalar dependencias
+      - name: Install Dependencies
         run: |
           npm install -g @angular/cli@19.0.0
           npm ci
 
-      - name: Compilar Ionic App (Production)
+      - name: Build Ionic App
         run: npm run build -- --configuration=production
 
-      - name: Guardar paquete generado para el trabajo de despliegue
-        uses: actions/upload-artifact@v4
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
         with:
-          name: datavista-frontend-build
-          path: www/
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref=='refs/heads/main'
-    environment:
-      name: "Production"
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: Descargar artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: datavista-frontend-build
-          path: www
-
-      - name: Crear ZIP para despliegue
-        run: |
-          cd www
-          zip -r ../deploy.zip .
-
-      - name: Desplegar a Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          slot-name: "Production"
-          package: deploy.zip
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C4B0BC9608F04A239A6F5D593EDDBE04 }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_DELIGHTFUL_WAVE_0B302F20F }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/"
+          output_location: "www"
+          api_location: ""
